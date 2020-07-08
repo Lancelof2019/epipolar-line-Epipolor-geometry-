@@ -11,8 +11,15 @@ def decompose(E):
 
     ## TODO 4
     ## Decompose the essential matrix E into R1, R2, t1, t2.
-
-
+    W=np.array([[0,-1,0],[1,0,0],[0,0,1]])
+    U,S,VT=np.linalg.svd(E)
+    R1=np.dot(np.dot(U,W),VT)
+    R2=np.dot(np.dot(U,np.transpose(W)),VT)
+    u3=U[:,2]
+    m_u3=np.linalg.norm(u3)
+    s=u3/m_u3
+    t1=s
+    t2=-s
 
     return R1, R2, t1, t2
 
